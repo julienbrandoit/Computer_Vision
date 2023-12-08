@@ -1,0 +1,35 @@
+== Dependency ==
+To execute our code, you will need some libraries:
+1. tifffile
+    > pip install tifffile
+2. opencv (cv2)
+    > pip install opencv-python
+
+
+== Execution ==
+To execute the code you can execute the file __init__.py. By default, it will execute the sequence 1-1.tif, but this can be changed inside __init__.py
+
+Note:
+- The videos should be in the folder indicated inside <input_path> in param.py. By default, the folder 'in' will be used. The title of the videos should be in the following format: {groupid}-{studentid}.tif
+- The output will be place in the folder indicated inside <output_json_path> in param.py. By default, the folder 'output' will be used.
+- The performance output will be place in the folder indicated inside <bb_json_path>, <tr_json_path> and <dc_json_path> in param.py. By default, the folder 'output/perf' will be used.
+
+
+== Quick description ==
+- __init__.py: generate the background model then executes the pipeline for the input sequence.
+- pipeline.py: follows this process:
+    0. EXTRACT ALL FRAMES
+    1. BGS
+    2. BOUNDING BOXES EXTRACTION
+    3. For each bounding box
+        3a. TRACKING (optional)
+        3b. CELL COUNTING
+    4. OUTPUT
+    5. MEASURE (optional)
+- param.py: set the parameters
+- BGS.py: generates the background model
+- bounding_boxes_extraction.py: detects the bounding boxes
+- tracking.py: sets the bounding boxes IDs
+- detect_cells.py: gets the number of cells by bouding boxes
+- measure.py: measure the performance of our method
+- output.py: output the data in the correct format and output the data in a graph
