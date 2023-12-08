@@ -1,0 +1,33 @@
+== Dependency ==
+To execute our code, you will need some libraries:
+1. libtiff
+    > sudo apt install libtiff-dev
+2. OpenMP
+    > sudo apt install libomp-dev
+
+
+== Execution ==
+To execute the code you can use the following command
+    > make run args="<start_sequence> <Number_of_video> [number_of_thread]"
+
+- So if you want to applie BGS for video 1-1 to 5-3 with 6 threads you can use
+    > make run args="1 15 6"
+
+Note:
+- The videos should be in the folder 'in'
+- The mask will be place in the folder 'out'
+- Thread is an optional parameter. If not specified, it will run the code sequentially
+
+If you want to use different paths from 'in' and 'out' you can use
+    > make custom args="<path_input> <path_output> <start_sequence> <number_of_video> [number_of_thread]"
+
+
+== Mention ==
+The code in timer.c and the function 'handel_error' in 'ViBe_segmentation.c' has been copy/paste from a code given in the course parallel programming. We did copy this code because it is simple and have no impact on what was ask for this project.
+
+
+== Quick description ==
+- ViBe_segmentation.c is the main file. It will perform the segmentation step as explain in the report
+- ViBe_model.c have some function to compute the background model from a video. Some functions of this file are not used for this part of the project, but are keept because we use them for other purposes. 
+- ViBe_common.c define some function used by other file such as load/save tiff file
+- timer.c give two function to get a timer
